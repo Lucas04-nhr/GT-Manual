@@ -1,0 +1,10 @@
+{
+  "name": "GT-Manual-plugin",
+  "version": "1.0.1",
+  "author": "花里胡哨",
+  "description": "手动过码插件",
+  "type": "module",
+  "dependencies": {
+    "ws": "*"
+  }
+}
