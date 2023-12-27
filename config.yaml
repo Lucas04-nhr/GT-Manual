@@ -1,12 +1,12 @@
 # 1034手动验证 0-关闭 1-开启 2-仅原神 3-仅星铁
 verify: 1
 # 手动验证API, demo: https://gitee.com/QQ1146638442/GT-Manual
-verifyAddr: 'https://hanxuan-gt.hf.space/GTest/register?key=免费开源项目-您如果是交易获得则是被骗-请及时退款并举报'
+verifyAddr: 'https://gt.haanxuan7.repl.co/GTest/register?key=免费开源项目-您如果是交易获得则是被骗-请及时退款并举报'
 
 # mys手动签到 0-关闭 1-开启
 sign: 1
 # 手动签到API, 仅发送uid、gt验证码信息, 不发送qq、cookie等敏感信息
-signAddr: 'wss://hanxuan-gt.hf.space/mysSign?key=免费开源项目-您如果是交易获得则是被骗-请及时退款并举报'
+signAddr: 'wss://gt.haanxuan7.repl.co/mysSign?key=免费开源项目-您如果是交易获得则是被骗-请及时退款并举报'
 
 
 # 黑名单QQ，不使用手动过码，有其他过码插件会next下一个过码服务
