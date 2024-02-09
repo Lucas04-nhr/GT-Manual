@@ -38,7 +38,7 @@ export class bbsVerification extends plugin {
 
   async mysReqErrHandler (e, options, reject) {
     let { mysApi, type, data } = options
-    let retcodeError = [1034, 5003]
+    let retcodeError = [1034, 5003, 10035]
     let cfg = Tools.Cfg
 
     if (
@@ -107,7 +107,7 @@ export class bbsVerification extends plugin {
     this.mysUsers[key] = user.mysUsers
     let payload = this.getUidsData(key, e.user_id)
     let { link } = await Tools.socketSend('createUser', payload, key)
-    if (link) await e.reply(` \n米游社签到\n${link}`, true, { recallMsg: 30 })
+    if (link) await e.reply(`米游社签到\n${link}`, true, { recallMsg: 30 })
   }
 
   getUidsData (key, user_id) {
