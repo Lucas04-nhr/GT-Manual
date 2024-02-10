@@ -91,11 +91,19 @@ export class bbsVerification extends plugin {
     let msg = e.msg.replace(/＃|#|原神|星铁|米游社|签到/g, '')
     e.user_id = e.at || (msg && Number(msg)) || e.user_id
     let key = md5(e.user_id)
-    if (!Tools.ws) {
-      Tools.connectWebSocket()
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      if (!Tools.ws) return false
-    }
+	if (!Tools.ws) {
+	 Tools.connectWebSocket();
+	  await new Promise((resolve) => {
+	    Tools.ws.onopen = () => {
+	      console.log('连接成功');
+	      resolve();
+	    };
+	  });	
+	  if (!Tools.ws) {
+	    console.log('连接失败');
+	    return false;
+	  }
+	}
     this.mysUsers = this.mysUsers || {}
     Tools.mysUsers = this.mysUsers
     Tools.MysUser = e.runtime.MysUser
