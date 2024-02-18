@@ -2,7 +2,7 @@ name: Sync from Gitee
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # This runs the workflow every day at 0:00 GMT+8 (16:00 UTC)
+    - cron: '0 16 * * *'  # This runs the workflow every day at 0:00 GMT+8 (16:00 UTC)
 
 jobs:
   sync:
