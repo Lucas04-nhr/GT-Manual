@@ -21,6 +21,13 @@ jobs:
       run: |
         git remote add gitee https://gitee.com/haanxuan/GT-Manual.git
         git pull gitee master  # Assuming 'main' is your default branch, change it if needed
+        
+    - name: Configure SSH Key
+      run: |
+        mkdir -p ~/.ssh
+        echo "$PRIVATE_KEY" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
 
     - name: Push to GitHub
       run: |
