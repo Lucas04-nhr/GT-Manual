@@ -17,6 +17,11 @@ jobs:
         git config user.name "Lucas04-nhr"
         git config user.email "lucas04@foxmail.com"
 
+    - name: Set Git Configuration
+      run: |
+        git config pull.rebase false
+        git config pull.ff only
+
     - name: Pull from Gitee
       run: |
         git remote add gitee https://gitee.com/haanxuan/GT-Manual.git
