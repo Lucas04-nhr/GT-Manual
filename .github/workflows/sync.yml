@@ -36,4 +36,4 @@ jobs:
 
     - name: Push to GitHub
       run: |
-        git push origin master  # Assuming 'main' is your default branch, change it if needed
+        git push origin main  # Assuming 'main' is your default branch, change it if needed
