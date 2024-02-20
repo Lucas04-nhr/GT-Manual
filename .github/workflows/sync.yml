@@ -1,6 +1,7 @@
 name: Sync from Gitee
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 16 * * *'
 
@@ -11,6 +12,8 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_TOKEN }}
 
     - name: Set up Git
       run: |
@@ -20,12 +23,12 @@ jobs:
     - name: Set Git Configuration
       run: |
         git config pull.rebase false
-        git config pull.ff only
 
     - name: Pull from Gitee
       run: |
         git remote add gitee https://gitee.com/haanxuan/GT-Manual.git
-        git pull gitee master  # Assuming 'main' is your default branch, change it if needed
+        git fetch gitee  # Assuming 'main' is your default branch, change it if needed
+        git merge --allow-unrelated-histories --no-ff gitee/master
         
     - name: Configure SSH Key
       run: |
