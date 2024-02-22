@@ -62,7 +62,6 @@ jobs:
 
   Clean_up:
     runs-on: ubuntu-latest
-    needs: Archive_and_Upload
 
     steps:
     - name: List Artifacts
@@ -86,6 +85,5 @@ jobs:
           echo "Deleting Artifact: $name"
           curl -s -X DELETE \
             -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ name }}"
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${name}"
         done
-        
