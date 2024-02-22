@@ -51,7 +51,7 @@ jobs:
 
     - name: Archive Source Code
       run: |
-        tar -czvf source_code_${{ github.run_number }}.tar.gz .
+        tar -czvf source_code_${{ github.run_number }}.tar.gz -C ${{ github.workspace }} .
       working-directory: ${{ github.workspace }}
 
     - name: Upload Source Code Artifact
