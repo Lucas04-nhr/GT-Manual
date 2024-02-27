@@ -10,7 +10,7 @@
 
 > 在Yunzai根目录执行命令安装
 ``` bash 
-git clone https://gitee.com/haanxuan/GT-Manual.git ./plugins/GT-Manual/
+git clone --depth=1 https://gitee.com/haanxuan/GT-Manual ./plugins/GT-Manual/
 ```
 - 安装依赖
 ``` bash
@@ -28,3 +28,12 @@ pnpm install --filter=GT-Manual-plugin
 本过码服务[插件](https://gitee.com/haanxuan/GT-Manual)和[后端](https://gitee.com/QQ1146638442/GT-Manual)都是开源   
 如果您是交易所得则是被骗  
 请及时退款并举报
+
+# 关于
+我不是该项目的作者  
+我只是一个普通用户  
+刚好有一点点能力让大家也用上  
+没有维护项目的能力  
+本库是成品插件带有后端服务  
+您安装就可以直接使用  
+无需自建或修改任何配置
