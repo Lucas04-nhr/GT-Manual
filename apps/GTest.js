@@ -1,4 +1,3 @@
-import md5 from 'md5'
 import lodash from 'lodash'
 import Tools from '../model/index.js'
 
@@ -18,7 +17,7 @@ export class bbsVerification extends plugin {
       rule: [
         {
           dsc: '米游社手动签到',
-          reg: '^#*(原神|星铁|米游社)?签到(.*)$',
+          reg: '^#*(原神|星铁|米游社)?签到$',
           fnc: 'sign'
         },
         {
