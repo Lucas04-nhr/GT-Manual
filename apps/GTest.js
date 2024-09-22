@@ -65,11 +65,11 @@ export class bbsVerification extends plugin {
     let urlMap = {
       ...this.apiTool.getUrlMap({ ...data, deviceId: this.device }),
       createVerification: {
-        url: 'https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/createVerification',
-        query: 'is_high=true'
+        url: 'https://bbs-api.miyoushe.com/misc/wapi/createVerification',
+        query: 'gids=2&is_high=false'
       },
       verifyVerification: {
-        url: 'https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/verifyVerification',
+        url: 'https://bbs-api.miyoushe.com/misc/wapi/verifyVerfication',
         body: data
       }
     }
