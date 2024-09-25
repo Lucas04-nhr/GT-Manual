@@ -19,15 +19,15 @@ export default class MysApi {
 
   urlMap (data) {
     let host = 'https://api-takumi.mihoyo.com/'
-    let hostRecord = 'https://api-takumi-record.mihoyo.com/'
-    let signActId = { gs: 'e202311201442471', sr: 'e202304121516551' }
+//  let hostRecord = 'https://api-takumi-record.mihoyo.com/'
+    let signActId = { gs: 'e202311201442471', sr: 'e202304121516551', zzz: "e202406242138391" }
     return {
       createVerification: {
-        url: `${hostRecord}game_record/app/card/wapi/createVerification`,
-        query: 'is_high=true'
+        url: `https://bbs-api.miyoushe.com/misc/wapi/createVerification`,
+        query: 'gids=2&is_high=false'
       },
       verifyVerification: {
-        url: `${hostRecord}game_record/app/card/wapi/verifyVerification`,
+        url: `https://bbs-api.miyoushe.com/misc/wapi/verifyVerfication`,
         body: data
       },
       bbs_sign_info: {
@@ -64,23 +64,29 @@ export default class MysApi {
 
   getServer () {
     let uid = this.uid
-    this.isSr = this.game === 'sr'
+    if (this.game === 'zzz') {
+      this.isSr = 2;
+    } else if (this.game === 'sr') {
+      this.isSr = 1;
+    } else {
+      this.isSr = 0;
+    }
     switch (String(uid)[0]) {
       case '1':
       case '2':
-        return this.isSr ? 'prod_gf_cn' : 'cn_gf01' // 官服
+        return this.isSr != 0 ? 'prod_gf_cn' : 'cn_gf01' // 官服
       case '5':
-        return this.isSr ? 'prod_qd_cn' : 'cn_qd01' // B服
+        return this.isSr != 0 ? 'prod_qd_cn' : 'cn_qd01' // B服
       case '6':
-        return this.isSr ? 'prod_official_usa' : 'os_usa' // 美服
+        return this.isSr != 0 ? 'prod_official_usa' : 'os_usa' // 美服
       case '7':
-        return this.isSr ? 'prod_official_euro' : 'os_euro' // 欧服
+        return this.isSr != 0 ? 'prod_official_euro' : 'os_euro' // 欧服
       case '8':
-        return this.isSr ? 'prod_official_asia' : 'os_asia' // 亚服
+        return this.isSr != 0 ? 'prod_official_asia' : 'os_asia' // 亚服
       case '9':
-        return this.isSr ? 'prod_official_cht' : 'os_cht' // 港澳台服
+        return this.isSr != 0 ? 'prod_official_cht' : 'os_cht' // 港澳台服
     }
-    return this.isSr ? 'prod_gf_cn' : 'cn_gf01'
+    return this.isSr != 0 ? 'prod_gf_cn' : 'cn_gf01'
   }
 
   async getData (type, data = {}) {
@@ -139,7 +145,12 @@ export default class MysApi {
       DS: this.getDs(query, body)
     }
     if (sign) {
-      if (!this.isSr) headers['x-rpc-signgame'] = 'hk4e'
+//    if (!this.isSr) headers['x-rpc-signgame'] = 'hk4e'
+      if (this.isSr == '0') {
+        headers['x-rpc-signgame'] = 'hk4e'
+      } else if (this.isSr == '2') {
+        headers['x-rpc-signgame'] = 'zzz'
+      }
       headers.Origin = 'https://act.mihoyo.com'
       headers.Referer = 'https://act.mihoyo.com'
       headers.DS = this.getDsSign()

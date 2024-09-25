@@ -4,7 +4,13 @@ import MysApi from './mysApi.js'
 export default class MysSign {
   async doSign (cookie, uidData) {
     let { uid, game, validate } = uidData
-    this.prefix = `Yz:${game == 'sr' ? 'starrail' : 'genshin'}:sign:`
+    if (game == 'sr') {
+      this.prefix = `Yz:starrail:sign:`
+    } else if (game == 'zzz') {
+      this.prefix = `Yz:zzz:sign:`
+    } else {
+      this.prefix = `Yz:genshin:sign:`
+    }
     this.mysApi = new MysApi(uid, cookie, { game })
     this.key = `${this.prefix}isSign:${uid}`
     this.uid = uid
