@@ -86,7 +86,7 @@ export default class MysApi {
       case '9':
         return this.isSr != 0 ? 'prod_official_cht' : 'os_cht' // 港澳台服
     }
-    return this.isSr ? 'prod_gf_cn' : 'cn_gf01'
+    return this.isSr != 0 ? 'prod_gf_cn' : 'cn_gf01'
   }
 
   async getData (type, data = {}) {
@@ -148,7 +148,7 @@ export default class MysApi {
 //    if (!this.isSr) headers['x-rpc-signgame'] = 'hk4e'
       if (this.isSr == '0') {
         headers['x-rpc-signgame'] = 'hk4e'
-      } else if (this.isSr == 'z') {
+      } else if (this.isSr == '2') {
         headers['x-rpc-signgame'] = 'zzz'
       }
       headers.Origin = 'https://act.mihoyo.com'
