@@ -81,6 +81,7 @@ export class bbsVerification extends plugin {
     if (body) body = JSON.stringify(body)
 
     let headers = this.getHeaders(query, body)
+//  if (this.isSr == 1) headers['x-rpc-challenge_game'] = '6'
     if (this.isSr) headers['x-rpc-challenge_game'] = '6'
 
     return { url, headers, body }
@@ -94,12 +95,12 @@ export class bbsVerification extends plugin {
 	 Tools.connectWebSocket();
 	  await new Promise((resolve) => {
 	    Tools.ws.onopen = () => {
-	      console.log('连接成功');
+	      logger.mark(`[${logger.cyan('GT-Manual')}] > [${logger.red('重连成功')}]`)
 	      resolve();
 	    };
 	  });	
 	  if (!Tools.ws) {
-	    console.log('连接失败');
+	    logger.mark(`[${logger.cyan('GT-Manual')}] > [${logger.red('重连失败')}]`)
 	    return false;
 	  }
 	}
@@ -114,14 +115,14 @@ export class bbsVerification extends plugin {
     this.mysUsers[key] = user.mysUsers
     let payload = this.getUidsData(key, e.user_id)
     let { link } = await Tools.socketSend('createUser', payload, key)
-    if (link) await e.reply(`米游社签到\n${link}`, true, { recallMsg: 30 })
+    if (link) await e.reply(`米游社签到\n${link}`, true, { recallMsg: 90 })
   }
 
   getUidsData (key, user_id) {
     let uids = []
     let mysUsers = this.mysUsers[key]
     lodash.forEach(mysUsers, ds => {
-      for (let game of ['gs', 'sr']) {
+      for (let game of ['gs', 'sr', 'zzz']) {
         ds.getUids(game).forEach(uid => uids.push(ds.getUidData(uid, game)))
       }
     })
